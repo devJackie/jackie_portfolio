@@ -48,6 +48,7 @@ dependencies {
 war {
     baseName = 'obreca'
     version =  '0.0.2'
+//    archiveName = "${baseName}-${version}.${extension}" // projectName.war
     archiveName = "${baseName}.${extension}" // projectName.war
     destinationDir = file("build/target/war/") //war가 생성되는 디렉토리 지정
 }
