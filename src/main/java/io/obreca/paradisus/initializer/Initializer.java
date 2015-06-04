@@ -28,9 +28,9 @@ public class Initializer implements ServletContextInitializer {
         ctx.register(MvcConfig.class);
 
 //        servletContext.addListener(new ContextLoaderListener(ctx));
-        Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
-        dispatcher.addMapping(MAPPING_URL);
-        logger.debug(">> {}", MAPPING_URL);
-        dispatcher.setLoadOnStartup(1);
+//        Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
+//        dispatcher.addMapping(MAPPING_URL);
+//        logger.debug(">> {}", MAPPING_URL);
+//        dispatcher.setLoadOnStartup(1);
     }
 }

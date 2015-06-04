@@ -8,7 +8,6 @@ import java.util.Map;
 /**
  * Created by devjackie83@gmail.com on 2015-06-01.
  */
-@Service("ContactService")
 public interface ContactService {
 
     Map<String,Object> sendMail(Contact contact);

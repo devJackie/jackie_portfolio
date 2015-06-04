@@ -19,7 +19,7 @@
 	</appender>
 	<Logger name="org.springframework.boot" level="info" />
 	<Logger name="io.obreca.paradisus" level="debug" />
-<root level="info">
+<root level="debug">
 	<appender-ref ref="console" />
 	<!--<appender-ref ref="file" />-->
 </root>

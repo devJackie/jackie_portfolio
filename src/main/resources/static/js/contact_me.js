@@ -21,7 +21,7 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "/contact/send-email",
                 type: "POST",
                 data: {
                     name: name,
@@ -29,20 +29,39 @@ $(function() {
                     email: email,
                     message: message
                 },
+                dataType: "json",
                 cache: false,
-                success: function() {
-                    // Enable button & show success message
-                    $("#btnSubmit").attr("disabled", false);
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-success')
-                        .append("<strong>Your message has been sent. </strong>");
-                    $('#success > .alert-success')
-                        .append('</div>');
+                success: function(json) {
+                    try {
+                        if (json.result && json.result != null && json.result != undefined) {
+                            console.log(">> in");
+                            if (json.result.indexOf('success') >= 0) {
+                                // Enable button & show success message
+                                $("#btnSubmit").attr("disabled", false);
+                                $('#success').html("<div class='alert alert-success'>");
+                                $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                                    .append("</button>");
+                                $('#success > .alert-success')
+                                    .append("<strong>Your message has been sent. </strong>");
+                                $('#success > .alert-success')
+                                    .append('</div>');
 
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
+                                //clear all fields
+                                $('#contactForm').trigger("reset");
+                            } else {
+                                // Fail message
+                                $('#success').html("<div class='alert alert-danger'>");
+                                $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                                    .append("</button>");
+                                $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
+                                $('#success > .alert-danger').append('</div>');
+                                //clear all fields
+                                $('#contactForm').trigger("reset");
+                            }
+                        }
+                    } catch (e){
+                        console.log(e);
+                    }
                 },
                 error: function() {
                     // Fail message
@@ -53,12 +72,12 @@ $(function() {
                     $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#contactForm').trigger("reset");
-                },
+                }
             })
         },
         filter: function() {
             return $(this).is(":visible");
-        },
+        }
     });
 
     $("a[data-toggle=\"tab\"]").click(function(e) {
