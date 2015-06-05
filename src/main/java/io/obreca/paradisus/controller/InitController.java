@@ -29,6 +29,14 @@ public class InitController {
         return mav;
     }
 
+    @RequestMapping(value = "test", method=RequestMethod.GET)
+    public ModelAndView test() {
+        log.debug("{}", ">>>>>>>>>>>>>> test in");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("test");
+        return mav;
+    }
+
     //jsp 테스트 (thymeleaf와 동시 작업 안됨)
     @RequestMapping(value = "hello", method=RequestMethod.GET)
     public ModelAndView hello() {

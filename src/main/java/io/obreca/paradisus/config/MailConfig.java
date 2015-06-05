@@ -3,6 +3,8 @@ package io.obreca.paradisus.config;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,8 @@ import java.util.Properties;
 @ConfigurationProperties(prefix = "mail", locations = {"classpath:/application.yml"})
 @ToString
 public class MailConfig {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private static final String MAIL_DEBUG = "mail.debug";
     private static final String MAIL_SMTP_STARTTLS_REQUIRED = "mail.smtp.starttls.required";
     private static final String MAIL_SMTP_AUTH = "mail.smtp.auth";
@@ -57,6 +61,8 @@ public class MailConfig {
         properties.put(MAIL_SMTP_AUTH, getSmtp().isAuth());
         properties.put(MAIL_DEBUG, true);
         javaMailSender.setJavaMailProperties(properties);
+
+        logger.debug("javaMailSender : {}", javaMailSender.toString());
 
         return javaMailSender;
     }

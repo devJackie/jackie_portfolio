@@ -17,7 +17,7 @@
 			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %-5p %C{1}.%M - %m%n</pattern>
 		</encoder>
 	</appender>
-	<Logger name="org.springframework.boot" level="info" />
+	<!--<Logger name="org.springframework.boot" level="info" />-->
 	<Logger name="io.obreca.paradisus" level="debug" />
 <root level="debug">
 	<appender-ref ref="console" />

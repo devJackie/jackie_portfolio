@@ -2,6 +2,8 @@ package io.obreca.paradisus.controller;
 
 import io.obreca.paradisus.domain.Contact;
 import io.obreca.paradisus.service.ContactService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +16,15 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/contact")
 public class ContactController {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     ContactService contactService;
 
     @RequestMapping(value = "/send-mail", method = RequestMethod.POST)
     public @ResponseBody Object sendMail(@ModelAttribute @Valid Contact contact) {
+        logger.debug(">> {} ",contact.toString());
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>> sendMail");
         Map<String,Object> result = contactService.sendMail(contact);
         return result;
     }
