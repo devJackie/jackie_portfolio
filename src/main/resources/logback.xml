@@ -8,7 +8,7 @@
 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<prudent>true</prudent>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/data/logs/project/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>/app/tomcat/apache-tomcat-8.0.23/obreca/logs/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
 
 			<!-- keep days -->
 			<maxHistory>3</maxHistory>
@@ -19,7 +19,7 @@
 	</appender>
 	<!--<Logger name="org.springframework.boot" level="info" />-->
 	<Logger name="io.obreca.paradisus" level="debug" />
-<root level="debug">
+<root level="info">
 	<appender-ref ref="console" />
 	<!--<appender-ref ref="file" />-->
 </root>
